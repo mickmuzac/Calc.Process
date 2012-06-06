@@ -6,7 +6,7 @@ double integrate(double coeff, int exponent, double end);
 
 int main()
 {
-    //Integrate coefficeint, x raised to some exponent, upper limit (from 0)
+    //Coefficeint, x raised to some exponent, upper limit (from 0)
     double total = integrate(2.0f, 5, 20.0f);
 
     printf("%.2f", total);
