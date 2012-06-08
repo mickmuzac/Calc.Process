@@ -17,7 +17,7 @@ namespace calc.process
             Console.WriteLine("\nWe will be integrating from 0 to x. Please choose a reasonable upper limit:");
             String x = Console.ReadLine();
 
-            Console.WriteLine("\nPlease choose a dx. Recommended value is .00005, anything smaller than that will take a long time to process:");
+            Console.WriteLine("\nPlease choose a dx. Recommended value is .00005, anything smaller than that will take more time to process:");
             String dx = Console.ReadLine();
 
             MathProcess math = new MathProcess(Double.Parse(dx));
@@ -31,8 +31,12 @@ namespace calc.process
 
             //Get integral and print
             double testTotal = math.getDefiniteIntegral(function, Double.Parse(x));
+            double testDeriv = math.getDerivative(function, 10);
 
-            Console.WriteLine("\n" +Math.Round(testTotal, 2));
+            Console.WriteLine("\n\nDefinite integral from 0 to " + x + " is approx. equal to: " + Math.Round(testTotal, 2));
+            Console.WriteLine("Derivative at " + x + " is approx. equal to: " + Math.Round(testDeriv, 2));
+            Console.WriteLine("dx used for both the integral and the derivative is equal to: " + dx);
+
             Console.ReadKey();
         }
     }

@@ -29,15 +29,10 @@ namespace calc.process
             return total;
         }
 
-        public double getDerivative(double coeff, int exponent, double end)
+        public double getDerivative(FunctionProcess f, double x)
         {
 
-            double total = 0.0f;
-
-            double x = 0;
-            double tempX = 0;
-
-            return total;
+            return (f.getValue(x + dx)-f.getValue(x)) / dx;
         }
     }
 }
