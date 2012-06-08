@@ -28,10 +28,12 @@ namespace calc.process
             InputParser input = new InputParser(s);
             input.getMonomialsFromQuery(function);
 
+            //Uncomment to use a generic Math function which accepts and returns a double. For now, generics override polynomials..
+            //function.constructGeneric(Math.Sin);
 
             //Get integral and print
             double testTotal = math.getDefiniteIntegral(function, Double.Parse(x));
-            double testDeriv = math.getDerivative(function, 10);
+            double testDeriv = math.getDerivative(function, Double.Parse(x));
 
             Console.WriteLine("\n\nDefinite integral from 0 to " + x + " is approx. equal to: " + Math.Round(testTotal, 2));
             Console.WriteLine("Derivative at " + x + " is approx. equal to: " + Math.Round(testDeriv, 2));

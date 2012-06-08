@@ -9,6 +9,10 @@ namespace calc.process
     {
 
         List<MonomialProcess> polynomialTerms;
+        Func<double, double> generic;
+
+        bool usingPolynomial = false;
+        bool usingGeneric = false;
 
         public FunctionProcess()
         {
@@ -29,9 +33,34 @@ namespace calc.process
         public void constructPolynomial(List<MonomialProcess> m)
         {
             polynomialTerms = m;
+            usingPolynomial = true;
         }
 
-        public double getValue( double x)
+        public void constructGeneric(Func<double, double> f)
+        {
+
+            generic = f;
+            usingGeneric = true;
+        }
+
+        public double getValue( double x )
+        {
+            if (usingGeneric)
+                return getValueGeneric(x);
+
+            else if (usingPolynomial)
+                return getValuePolynomial(x);
+
+            return 0;
+        }
+
+        private double getValueGeneric(double x)
+        {
+            double i = generic(x);
+            return i;
+        }
+
+        private double getValuePolynomial(  double x)
         {
             double y = 0;
             double temp = 0;
@@ -53,7 +82,7 @@ namespace calc.process
                         temp *= x;
 
                     y += temp * polynomialTerms[i].coeff;
-                   
+
                 }
             }
 
