@@ -1,6 +1,11 @@
-Calc.Process
-============
+#Calc.Process
+
+##Intro
 
 A very simple to use basic calculus calculator made to test the laws of mathematics. I do plan on adding visualization and expanded functionality to it over time.
 
 *It won't work properly until the next commit.* A few bugs will be fixed, including a generic function bug. Updates to the InputParser class (to support generic functions) will also be included.
+
+##Features
+
+Because Calc.Process is in its very early stages, its feature set is currently limited. It can integrate basic polynomials of any length (time taken depends on your processor's speed). It can also find the derivative of those polynomials. Generic function support is currently in progress and should be added very soon.
