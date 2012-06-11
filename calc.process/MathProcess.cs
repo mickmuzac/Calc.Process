@@ -13,7 +13,7 @@ namespace calc.process
         {
             this.dx = dx;
         }
-
+         
         public double getDefiniteIntegral(FunctionProcess f, double end)
         {
 
@@ -21,7 +21,7 @@ namespace calc.process
 
             double x = 0;
 
-            for (x = 0; x < end; x += dx)
+            for (x = 0; x <= end; x += dx)
             {
                 total += f.getValue(x) * dx;
             }

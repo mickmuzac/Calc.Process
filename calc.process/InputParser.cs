@@ -60,7 +60,7 @@ namespace calc.process
 
                     first = false;
                 }
-
+                     
                 else if(currentNum.Length > 0)
                 {
                     

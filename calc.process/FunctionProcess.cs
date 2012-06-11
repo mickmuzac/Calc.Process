@@ -9,10 +9,6 @@ namespace calc.process
     {
 
         List<MonomialProcess> polynomialTerms;
-        Func<double, double> generic;
-
-        bool usingPolynomial = false;
-        bool usingGeneric = false;
 
         public FunctionProcess()
         {
@@ -27,66 +23,61 @@ namespace calc.process
             for (int i = 0; i < numTerms; i++)
             {
                 polynomialTerms.Add(new MonomialProcess(coeff[i], exponent[i]));
+                
+                //Feature in progress
+                //polynomialTerms[i].setGeneric(Math.Sin, 2);
             }
         }
 
         public void constructPolynomial(List<MonomialProcess> m)
         {
             polynomialTerms = m;
-            usingPolynomial = true;
-        }
-
-        public void constructGeneric(Func<double, double> f)
-        {
-
-            generic = f;
-            usingGeneric = true;
         }
 
         public double getValue( double x )
         {
-            if (usingGeneric)
-                return getValueGeneric(x);
 
-            else if (usingPolynomial)
-                return getValuePolynomial(x);
-
-            return 0;
+            return getValuePolynomial(x);
         }
 
-        private double getValueGeneric(double x)
+        private double getValuePolynomial(double x)
         {
-            double i = generic(x);
-            return i;
-        }
+            double y1 = 0;
 
-        private double getValuePolynomial(  double x)
-        {
-            double y = 0;
             double temp = 0;
-            int length = polynomialTerms.Count;
+            double temp2 = 0;
+            double placeholder2 = 0;
 
+            int length = polynomialTerms.Count;
+            int greaterExponent = 0;
+             
             int g = 1;
             int i = 0;
 
             for (i = 0; i < length; i++)
             {
-                if (polynomialTerms[i].exponent == 0)
-                    y += 1;
+                temp = x;
+                temp2 = polynomialTerms[i].generic(x);
+                placeholder2 = temp2;
 
-                else
+                //We'll loop to the greater exponent..
+                greaterExponent = Math.Max(polynomialTerms[i].exponent, polynomialTerms[i].genericExponent);
+
+                for (g = 1; g < greaterExponent; g++)
                 {
-                    temp = x;
 
-                    for (g = 1; g < polynomialTerms[i].exponent; g++)
+                    if (greaterExponent <= polynomialTerms[i].exponent)
                         temp *= x;
 
-                    y += temp * polynomialTerms[i].coeff;
-
+                    if (greaterExponent <= polynomialTerms[i].genericExponent)
+                        temp2 *= placeholder2;
                 }
-            }
 
-            return y;
+                y1 = y1 + temp * polynomialTerms[i].coeff * temp2;
+            }
+            
+
+            return y1;
         }
     }
 }
