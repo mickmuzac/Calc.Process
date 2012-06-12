@@ -46,9 +46,9 @@
     <Compile Include="FunctionProcess.cs" />
     <Compile Include="InputParser.cs" />
     <Compile Include="MathProcess.cs" />
-    <Compile Include="MonomialProcess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TermProcess.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

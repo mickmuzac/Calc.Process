@@ -8,76 +8,60 @@ namespace calc.process
     class FunctionProcess
     {
 
-        List<MonomialProcess> polynomialTerms;
+        List<TermProcess> function;
 
         public FunctionProcess()
         {
         }
 
-        public void constructPolynomial(List<double> coeff, List<int> exponent)
+        public void constructFunction(List<double> coeff, List<int> exponent)
         {
 
-            polynomialTerms = new List<MonomialProcess>(10);
+            function = new List<TermProcess>(10);
             int numTerms = coeff.Count;
 
             for (int i = 0; i < numTerms; i++)
             {
-                polynomialTerms.Add(new MonomialProcess(coeff[i], exponent[i]));
+                function.Add(new TermProcess(coeff[i], exponent[i]));
                 
                 //Feature in progress
-                //polynomialTerms[i].setGeneric(Math.Sin, 2);
+                //polynomialTerms[i].addGeneric(Math.Cos, 2);
+                //polynomialTerms[i].addGeneric(Math.Sin, 2);
             }
         }
 
-        public void constructPolynomial(List<MonomialProcess> m)
+        public void constructFunction(List<TermProcess> m)
         {
-            polynomialTerms = m;
+            function = m;
         }
 
-        public double getValue( double x )
+        public double getValue(double x)
         {
-
-            return getValuePolynomial(x);
-        }
-
-        private double getValuePolynomial(double x)
-        {
-            double y1 = 0;
-
+            double y = 0;
             double temp = 0;
-            double temp2 = 0;
-            double placeholder2 = 0;
 
-            int length = polynomialTerms.Count;
-            int greaterExponent = 0;
+            int length = function.Count;
              
             int g = 1;
             int i = 0;
 
+
             for (i = 0; i < length; i++)
             {
                 temp = x;
-                temp2 = polynomialTerms[i].generic(x);
-                placeholder2 = temp2;
 
-                //We'll loop to the greater exponent..
-                greaterExponent = Math.Max(polynomialTerms[i].exponent, polynomialTerms[i].genericExponent);
-
-                for (g = 1; g < greaterExponent; g++)
+                //Using the power function is less efficient than the following for loop
+                //temp = Math.Pow(x, polynomialTerms[i].exponent);
+                for (g = 1; g < function[i].exponent; g++)
                 {
 
-                    if (greaterExponent <= polynomialTerms[i].exponent)
                         temp *= x;
-
-                    if (greaterExponent <= polynomialTerms[i].genericExponent)
-                        temp2 *= placeholder2;
                 }
 
-                y1 = y1 + temp * polynomialTerms[i].coeff * temp2;
+                y += temp * function[i].coeff * function[i].getGenericValue(x);
             }
-            
 
-            return y1;
+            return y;
         }
     }
 }

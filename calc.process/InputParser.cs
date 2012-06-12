@@ -97,7 +97,7 @@ namespace calc.process
                     coeff.Add(temp);
             }
 
-            f.constructPolynomial(coeff, exponent);
+            f.constructFunction(coeff, exponent);
             //Console.WriteLine("" + coeff[0] + exponent[0] + coeff[1] + exponent[1]);
         }
 
