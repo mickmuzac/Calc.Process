@@ -1,0 +1,6 @@
+# Ignore installer output
+*.suo
+*.exe
+*.pdb
+*.cache
+*.txt
