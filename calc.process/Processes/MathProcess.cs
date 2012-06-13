@@ -11,7 +11,7 @@ namespace calc.process
         public double dx;
         public double time = 0;
 
-        List<IntegrationThreadObject> integrationValues;
+        List<IntegrationThreadParameter> integrationValues;
         List<Thread> threads;
         public int numThreads = 1;
         List<double> finalValues;
@@ -27,7 +27,7 @@ namespace calc.process
             //End snippet
 
             numThreads = 2 * (str.Length - 2);
-            integrationValues = new List<IntegrationThreadObject>(numThreads);
+            integrationValues = new List<IntegrationThreadParameter>(numThreads);
             threads = new List<Thread>(numThreads);
             finalValues = new List<double>(numThreads); 
         }
@@ -37,7 +37,7 @@ namespace calc.process
             this.dx = dx;
             numThreads = multithreadingLevel;
 
-            integrationValues = new List<IntegrationThreadObject>(numThreads);
+            integrationValues = new List<IntegrationThreadParameter>(numThreads);
             threads = new List<Thread>(numThreads);
             finalValues = new List<double>(numThreads);
         }
@@ -49,7 +49,7 @@ namespace calc.process
 
             for (int i = 0; i < numThreads; i++)
             {
-                integrationValues.Add(new IntegrationThreadObject(f, i * increment, (i + 1) * increment));
+                integrationValues.Add(new IntegrationThreadParameter(f, i * increment, (i + 1) * increment));
                 threads.Add(new Thread(new ParameterizedThreadStart(getDefiniteIntegral)));
                 threads[i].Start(integrationValues[i]);
             }
@@ -74,7 +74,7 @@ namespace calc.process
 
             double total = 0;
             double x = 0;
-            IntegrationThreadObject values = (IntegrationThreadObject)parameter;
+            IntegrationThreadParameter values = (IntegrationThreadParameter)parameter;
 
             for (x = values.start; x <= values.end; x += dx)
             {

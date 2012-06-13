@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Processes\FunctionProcess.cs" />
     <Compile Include="Auxiliary\InputParser.cs" />
-    <Compile Include="Auxiliary\IntegrationThreadObject.cs" />
+    <Compile Include="Auxiliary\IntegrationThreadParameter.cs" />
     <Compile Include="Processes\MathProcess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
