@@ -17,7 +17,7 @@ Because Calc.Process is in its very early stages, its feature set is currently v
 * More features coming soon!
 
 ##Major Changes
-* 6/13/2012 - Added multithreading support resulting in a speed up of about 4-5x on average. Works very well with small dx or large function values.
+* 6/13/2012 - Added multithreading support resulting in a speed up of about 3-4x on average. Works very well with small dx or large function values.
 
 * 6/11/2012 - Initial working addition of generic functions. Still needs to be parsed.
 
