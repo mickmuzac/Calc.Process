@@ -6,11 +6,11 @@ A very simple to use basic calculus calculator made to test the laws of mathemat
 
 A few bugs will be fixed, including a generic function bug. Updates to the InputParser class (to support generic functions) will also be included.
 
-*Unlimited generic functions. Supports any function in System.Math that accepts and returns a single double value.
-*Unlimited terms in any given function.
-*Multithreaded support for superior performance.
-*Calculates both the definite integral value and derivative value at any given x.
-*More features coming soon!
+* Unlimited generic functions. Supports any function in System.Math that accepts and returns a single double value.
+* Unlimited terms in any given function.
+* Multithreaded support for superior performance.
+* Calculates both the definite integral value and derivative value at any given x.
+* More features coming soon!
 
 ##Features
 
