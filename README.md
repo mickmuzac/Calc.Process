@@ -16,5 +16,11 @@ Because Calc.Process is in its very early stages, its feature set is currently v
 * Calculates both the definite integral value and derivative value at any given x.
 * More features coming soon!
 
-##Change Log
+##Majore Changes
 * 6/13/2012 - Added multithreading support resulting in a speed up of about 4-5x on average. Works very well with small dx or large function values.
+
+* 6/11/2012 - Initial working addition of generic functions. Still needs to be parsed.
+
+* 6/08/2012 - Migrated from C to C#. Derivative functionality added and is now working flawlessly. Work started on generic functions.
+
+* 6/06/2012 - Initial commit. Project resurrected from the dead.
