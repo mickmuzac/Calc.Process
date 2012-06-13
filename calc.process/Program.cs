@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace calc.process
 {
@@ -28,12 +29,18 @@ namespace calc.process
             input.getMonomialsFromQuery(function);
 
             //Get integral and print
-            double testTotal = math.getDefiniteIntegral(function, Double.Parse(x));
+            Stopwatch sW = new Stopwatch();
+            sW.Start();
+
+            double testTotal = math.getDefiniteIntegralThreaded(function, Double.Parse(x));
             double testDeriv = math.getDerivative(function, Double.Parse(x));
 
-            Console.WriteLine("\n\nDefinite integral from 0 to " + x + " is approx. equal to: " + Math.Round(testTotal, 8));
-            Console.WriteLine("Derivative at " + x + " is approx. equal to: " + Math.Round(testDeriv, 2));
-            Console.WriteLine("dx used for both the integral and the derivative is equal to: " + dx);
+            sW.Stop();
+            
+
+            Console.WriteLine("\n\nDefinite integral from 0 to " + x + " is approx. equal to: " + Math.Round(testTotal, 5));
+            Console.WriteLine("Derivative at " + x + " is approx. equal to: " + Math.Round(testDeriv, 5));
+            Console.WriteLine("Time used for calculation: {0}ms, using {1} threads.", sW.ElapsedMilliseconds, math.numThreads);
              
             Console.ReadKey();
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
+using System.Threading;
 
 namespace calc.process
 {
@@ -11,24 +11,82 @@ namespace calc.process
         public double dx;
         public double time = 0;
 
+        List<IntegrationThreadObject> integrationValues;
+        List<Thread> threads;
+        public int numThreads = 1;
+        List<double> finalValues;
+
+        private readonly object listLock = new object();
+
         public MathProcess(double dx)
         {
             this.dx = dx;
+
+            //Snippet found to get the number of decimal places in dx
+            String str = String.Format("{0:0.#######}",dx); 
+            //End snippet
+
+            numThreads = 2 * (str.Length - 2);
+            integrationValues = new List<IntegrationThreadObject>(numThreads);
+            threads = new List<Thread>(numThreads);
+            finalValues = new List<double>(numThreads); 
         }
-         
-        public double getDefiniteIntegral(FunctionProcess f, double end)
+
+        public MathProcess(double dx, int multithreadingLevel)
+        {
+            this.dx = dx;
+            numThreads = multithreadingLevel;
+
+            integrationValues = new List<IntegrationThreadObject>(numThreads);
+            threads = new List<Thread>(numThreads);
+            finalValues = new List<double>(numThreads);
+        }
+        
+        public double getDefiniteIntegralThreaded(FunctionProcess f, double end){
+
+            double total = 0;
+            double increment = end / numThreads;
+
+            for (int i = 0; i < numThreads; i++)
+            {
+                integrationValues.Add(new IntegrationThreadObject(f, i * increment, (i + 1) * increment));
+                threads.Add(new Thread(new ParameterizedThreadStart(getDefiniteIntegral)));
+                threads[i].Start(integrationValues[i]);
+            }
+
+            while (finalValues.Count < numThreads)
+            {
+
+                Thread.Yield();
+            }
+
+            for (int i = 0; i < finalValues.Count; i++)
+            {
+
+                total += finalValues[i];
+            }
+
+            return total;
+        }
+
+        public void getDefiniteIntegral(Object parameter)
         {
 
             double total = 0;
             double x = 0;
+            IntegrationThreadObject values = (IntegrationThreadObject)parameter;
 
-
-            for (x = 0; x <= end; x += dx)
+            for (x = values.start; x <= values.end; x += dx)
             {
-                total += f.getValue(x) * dx;
+                total += values.function.getValue(x) * dx;
             }
 
-            return total;
+            lock (listLock)
+            {
+
+                finalValues.Add(total);
+            }
+
         }
 
         public double getDerivative(FunctionProcess f, double x)
