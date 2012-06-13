@@ -26,7 +26,7 @@ namespace calc.process
             String str = String.Format("{0:0.#######}",dx); 
             //End snippet
 
-            numThreads = 2 * (str.Length - 2);
+            numThreads = (int) (2.8 * (str.Length - 2));
             integrationValues = new List<IntegrationThreadParameter>(numThreads);
             threads = new List<Thread>(numThreads);
             finalValues = new List<double>(numThreads); 

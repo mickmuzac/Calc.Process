@@ -18,7 +18,7 @@ namespace calc.process
             Console.WriteLine("\nWe will be integrating from 0 to x. Please choose a reasonable upper limit:");
             String x = Console.ReadLine();
 
-            Console.WriteLine("\nPlease choose a dx. Recommended value is .00005, anything smaller than that will take more time to process:");
+            Console.WriteLine("\nPlease choose a dx. Recommended value is .00001, anything smaller than that will take more time to process:");
             String dx = Console.ReadLine();
 
             MathProcess math = new MathProcess(Double.Parse(dx));
