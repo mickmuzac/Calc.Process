@@ -9,9 +9,17 @@ namespace calc.process
     {
         public IEnumerable<char> query;
 
+        public InputParser() { }
+
         public InputParser(String s)
         {
             query = s.Where(x => char.IsNumber(x) || x == '+' || x == '-' || x == '^');
+        }
+
+        public void getMonomialsFromQuery(FunctionProcess f, String s)
+        {
+            query = s.Where(x => char.IsNumber(x) || x == '+' || x == '-' || x == '^');
+            getMonomialsFromQuery(f);
         }
 
         public void getMonomialsFromQuery(FunctionProcess f)
