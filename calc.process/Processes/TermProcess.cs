@@ -23,22 +23,26 @@ namespace calc.process
             genericExponent = new List<int>(5);
         }
 
+        //Adds a generic function and exponent to their respective lists
         public void addGeneric(Func<double,double> f, int gExponent)
         {
-
+            
             generic.Add(f);
             genericExponent.Add(gExponent);
         }
 
+        /*This handles the case when there are no generic elements. 
+         Returns a 1 instead of a 0 (since it needs to be multiplied)*/
         public double getGenericValue(double x)
         {
-            //This handles the case when there are no generic elements. Returns a 1 instead of a 0 (since it needs to be multiplied)
+
             if (generic.Count == 0)
                 return 1;
 
             else return getTrueGenericValue(x);
         }
 
+        //True generic value. Use when multiplication is not needed
         public double getTrueGenericValue(double x)
         {
             double y = 0;

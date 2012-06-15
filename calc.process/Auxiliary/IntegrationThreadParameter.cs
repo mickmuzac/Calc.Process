@@ -12,6 +12,7 @@ namespace calc.process
         public double start;
         public double end;
 
+        //Simple parameter object for the integration threads
         public IntegrationThreadParameter(FunctionProcess f, double x, double y)
         {
             start = x;

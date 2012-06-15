@@ -14,6 +14,7 @@ namespace calc.process
         {
         }
 
+        //Created a Function using a list of correlating coefficients and exponents
         public void constructFunction(List<double> coeff, List<int> exponent)
         {
 
@@ -25,16 +26,18 @@ namespace calc.process
                 function.Add(new TermProcess(coeff[i], exponent[i]));
                 
                 //Feature in progress
-                //polynomialTerms[i].addGeneric(Math.Cos, 2);
-                //polynomialTerms[i].addGeneric(Math.Sin, 2);
+               // function[i].addGeneric(Math.Cos, 1);
+                //function[i].addGeneric(Math.Sin, 1);
             }
         }
 
+        //Construct a Function using a list of Terms
         public void constructFunction(List<TermProcess> m)
         {
             function = m;
         }
 
+        //Get the value of this Function
         public double getValue(double x)
         {
             double y = 0;
@@ -49,6 +52,9 @@ namespace calc.process
             for (i = 0; i < length; i++)
             {
                 temp = x;
+
+                if (function[i].exponent == 0)
+                    temp = 1;
 
                 //Using the power function is less efficient than the following for loop
                 //temp = Math.Pow(x, polynomialTerms[i].exponent);
