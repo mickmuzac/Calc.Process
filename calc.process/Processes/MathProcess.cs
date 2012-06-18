@@ -46,6 +46,8 @@ namespace calc.process
         public Bitmap visual;
         private double saveEnd = 0;
 
+        double negDx;
+
         public MathProcess()
         {
             visual = new Bitmap(@"image.jpg");
@@ -75,6 +77,7 @@ namespace calc.process
             double total = 0;
             double increment = end / numThreads;
             saveEnd = end;
+            negDx = (end > 0) ? dx : -1 * dx;
 
             for (int i = 0; i < numThreads; i++)
             {
@@ -100,17 +103,16 @@ namespace calc.process
 
         public void getDefiniteIntegral(Object parameter)
         {
-
-            double total = 0;
-            double x = 0;
-            double temp = 0;
             IntegrationThreadParameter values = (IntegrationThreadParameter)parameter;
+            double total = 0;
 
-            for (x = values.start; x <= values.end; x += dx)
-            {
-                temp = values.function.getValue(x);
-                total += temp * dx;
-            }
+            if(negDx > 0)
+                for (double x = values.start; x <= values.end; x += negDx)   
+                    total += values.function.getValue(x) * dx;
+
+            else
+                for (double x = values.start; x >= values.end; x += negDx)
+                    total += values.function.getValue(x) * dx;
 
             lock (listLock)
                 finalValues.Add(total);
@@ -134,26 +136,25 @@ namespace calc.process
 
             Pen solid = new Pen(Color.LightGray, 1);
 
-            double scaleInv = xScale * .001;
+            double scaleInv = xScale * .0005;
 
             List<PointF> points = new List<PointF>(200);
 
-
-
-            for (double x = - 20; x < 20; x += scaleInv)
+            for (double x = - 25; x < 25; x += scaleInv)
             {
                 temp = f.getValue(x);
                 temp = temp * (-yScale) + centerY;
 
                 points.Add(new PointF((float)(x * xScale) + centerX, (float)temp));
 
-                if(x < saveEnd && x > 0)
+                if ((x < saveEnd && x > 0) || (x > saveEnd && x < 0))
                     g.DrawLine(solid, (float)(x * xScale + centerX), (float)(temp), (float)(x * xScale + centerX), centerY);
 
-                
             }
 
             g.DrawLine(axes, (float)(saveEnd * xScale + centerX), (float)(-f.getValue(saveEnd) * yScale + centerY), (float)(saveEnd * xScale + centerX), centerY);
+            
+            //This draw curve call is where the magic happens
             g.DrawCurve(pen, points.ToArray());
 
             g.DrawLine(axes, 0, centerY, p.Width, centerY);

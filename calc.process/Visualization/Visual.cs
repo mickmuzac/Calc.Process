@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.Reflection;
 
 namespace calc.process
 {
@@ -34,18 +36,18 @@ namespace calc.process
         private void doAllDefaultActions()
         {
 
-            String x = "" + endIntegral.Value;
+            double x = (Double)endIntegral.Value;
             math.deltaX = Math.Pow(10, trackBar1.Value);
 
             //Parse input, construct the polynomial, and save it in function
-            input.getMonomialsFromQuery(function, functionBox.Text);
+            input.generateFunctionFromQuery(function, functionBox.Text);
 
             //Set the stop watch for performance evaluation
             Stopwatch sW = new Stopwatch();
             sW.Start();
 
-            double testTotal = math.getDefiniteIntegralThreaded(function, Double.Parse(x));
-            double testDeriv = math.getDerivative(function, Double.Parse(x));
+            double testTotal = math.getDefiniteIntegralThreaded(function, x);
+            double testDeriv = math.getDerivative(function, x);
 
             sW.Stop();
 
@@ -87,7 +89,7 @@ namespace calc.process
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            endValueLabel.Text = endIntegral.Value.ToString("####");
+            endValueLabel.Text = "End Point: " + endIntegral.Value.ToString("####");
         }
 
         private void yScale_ValueChanged(object sender, EventArgs e)
@@ -98,6 +100,51 @@ namespace calc.process
         private void xScale_ValueChanged(object sender, EventArgs e)
         {
             pictureBox1.Image = math.getVisualization(function, pictureBox1, Math.Pow(2, xScale.Value), Math.Pow(2, yScale.Value));
+        }
+
+        private void endValueLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            Console.WriteLine("Saving is not yet functional");
+
+           /* SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+
+            ImageCodecInfo myImageCodecInfo = GetEncoderInfo("image/png");
+            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+
+            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+
+            // Save the bitmap as a JPEG file with quality level 100.
+            myEncoderParameters.Param[0] = new EncoderParameter(myEncoder, 100L);
+
+            math.visual.Save(@"C:\Users\muzacm\Desktop\graph.png", myImageCodecInfo, myEncoderParameters);
+
+            */
+
+
+        }
+
+
+        private static ImageCodecInfo GetEncoderInfo(String mimeType)
+        {
+            int j;
+            ImageCodecInfo[] encoders;
+            encoders = ImageCodecInfo.GetImageEncoders();
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].MimeType == mimeType)
+                    return encoders[j];
+            }
+            return null;
         }
     }
 }

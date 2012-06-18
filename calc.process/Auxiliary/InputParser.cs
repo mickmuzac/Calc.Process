@@ -5,6 +5,7 @@ using System.Text;
 
 namespace calc.process
 {
+    //This entire class needs to be rewritten (or expanded) for broader support.
     class InputParser
     {
         public IEnumerable<char> query;
@@ -16,13 +17,13 @@ namespace calc.process
             query = s.Where(x => char.IsNumber(x) || x == '+' || x == '-' || x == '^');
         }
 
-        public void getMonomialsFromQuery(FunctionProcess f, String s)
+        public void generateFunctionFromQuery(FunctionProcess f, String s)
         {
             query = s.Where(x => char.IsNumber(x) || x == '+' || x == '-' || x == '^');
-            getMonomialsFromQuery(f);
+            generateFunctionFromQuery(f);
         }
 
-        public void getMonomialsFromQuery(FunctionProcess f)
+        public void generateFunctionFromQuery(FunctionProcess f)
         {
 
             String currentNum = "";

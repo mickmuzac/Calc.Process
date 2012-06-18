@@ -27,8 +27,10 @@ namespace calc.process
                 
                 //Feature in progress
                // function[i].addGeneric(Math.Cos, 1);
-                //function[i].addGeneric(Math.Sin, 1);
+                function[i].addGeneric(Math.Sin, 1);
             }
+
+            return;
         }
 
         //Construct a Function using a list of Terms

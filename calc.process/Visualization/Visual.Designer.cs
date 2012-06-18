@@ -38,6 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.xScale = new System.Windows.Forms.TrackBar();
             this.yScale = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endIntegral)).BeginInit();
@@ -52,7 +53,7 @@
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(127, 23);
             this.submitButton.TabIndex = 1;
-            this.submitButton.Text = "Calculate";
+            this.submitButton.Text = "Visualize";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
@@ -80,11 +81,11 @@
             // dxLabel
             // 
             this.dxLabel.AutoSize = true;
-            this.dxLabel.Location = new System.Drawing.Point(585, 56);
+            this.dxLabel.Location = new System.Drawing.Point(631, 56);
             this.dxLabel.Name = "dxLabel";
-            this.dxLabel.Size = new System.Drawing.Size(48, 13);
+            this.dxLabel.Size = new System.Drawing.Size(81, 13);
             this.dxLabel.TabIndex = 6;
-            this.dxLabel.Text = "dx Value";
+            this.dxLabel.Text = "dx Value: .0001";
             this.dxLabel.Click += new System.EventHandler(this.dxLabel_Click);
             // 
             // groupBox1
@@ -95,7 +96,7 @@
             this.groupBox1.Controls.Add(this.dxLabel);
             this.groupBox1.Controls.Add(this.trackBar1);
             this.groupBox1.Controls.Add(this.submitButton);
-            this.groupBox1.Location = new System.Drawing.Point(54, 43);
+            this.groupBox1.Location = new System.Drawing.Point(40, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(870, 168);
             this.groupBox1.TabIndex = 7;
@@ -105,11 +106,12 @@
             // endValueLabel
             // 
             this.endValueLabel.AutoSize = true;
-            this.endValueLabel.Location = new System.Drawing.Point(631, 125);
+            this.endValueLabel.Location = new System.Drawing.Point(647, 125);
             this.endValueLabel.Name = "endValueLabel";
-            this.endValueLabel.Size = new System.Drawing.Size(53, 13);
+            this.endValueLabel.Size = new System.Drawing.Size(65, 13);
             this.endValueLabel.TabIndex = 8;
-            this.endValueLabel.Text = "End Point";
+            this.endValueLabel.Text = "End Point: 5";
+            this.endValueLabel.Click += new System.EventHandler(this.endValueLabel_Click);
             // 
             // endIntegral
             // 
@@ -124,7 +126,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(54, 217);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 186);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(815, 267);
             this.pictureBox1.TabIndex = 8;
@@ -133,8 +135,8 @@
             // xScale
             // 
             this.xScale.LargeChange = 100;
-            this.xScale.Location = new System.Drawing.Point(54, 490);
-            this.xScale.Maximum = 4;
+            this.xScale.Location = new System.Drawing.Point(40, 459);
+            this.xScale.Maximum = 6;
             this.xScale.Minimum = -4;
             this.xScale.Name = "xScale";
             this.xScale.Size = new System.Drawing.Size(815, 45);
@@ -145,8 +147,8 @@
             // 
             // yScale
             // 
-            this.yScale.Location = new System.Drawing.Point(879, 217);
-            this.yScale.Maximum = 4;
+            this.yScale.Location = new System.Drawing.Point(865, 186);
+            this.yScale.Maximum = 6;
             this.yScale.Minimum = -4;
             this.yScale.Name = "yScale";
             this.yScale.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -155,11 +157,23 @@
             this.yScale.Value = 2;
             this.yScale.ValueChanged += new System.EventHandler(this.yScale_ValueChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(779, 510);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.TabStop = false;
+            this.button1.Text = "Save Graph";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Visual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 545);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.yScale);
             this.Controls.Add(this.xScale);
             this.Controls.Add(this.pictureBox1);
@@ -191,5 +205,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TrackBar xScale;
         private System.Windows.Forms.TrackBar yScale;
+        private System.Windows.Forms.Button button1;
     }
 }
