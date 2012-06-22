@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auxiliary\VisualizationStartThread.cs" />
     <Compile Include="Processes\FunctionProcess.cs" />
     <Compile Include="Auxiliary\InputParser.cs" />
     <Compile Include="Auxiliary\IntegrationThreadParameter.cs" />

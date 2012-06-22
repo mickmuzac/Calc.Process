@@ -8,6 +8,7 @@ namespace calc.process
     //This entire class needs to be rewritten (or expanded) for broader support.
     class InputParser
     {
+
         public IEnumerable<char> query;
 
         public InputParser() { }
@@ -25,7 +26,6 @@ namespace calc.process
 
         public void generateFunctionFromQuery(FunctionProcess f)
         {
-
             String currentNum = "";
 
             List<double> coeff = new List<double>(10);
@@ -34,7 +34,6 @@ namespace calc.process
             bool first = true;
             bool isExponent = false;
             int negative = 1;
-
             int temp;
             
             foreach (char c in query)

@@ -10,8 +10,18 @@ namespace calc.process
 
         List<TermProcess> function;
 
+        //This specifies which derivative level is wanted
+        int setDerivative = 0;
+        double dx = 0;
+
         public FunctionProcess()
         {
+        }
+
+        public void setDerivativeLevel(double dX, int deriv)
+        {
+            this.dx = dX;
+            setDerivative = deriv;
         }
 
         //Created a Function using a list of correlating coefficients and exponents
@@ -27,7 +37,7 @@ namespace calc.process
                 
                 //Feature in progress
                // function[i].addGeneric(Math.Cos, 1);
-                function[i].addGeneric(Math.Sin, 1);
+                //function[i].addGeneric(Math.Sin, 1);
             }
 
             return;
@@ -39,19 +49,14 @@ namespace calc.process
             function = m;
         }
 
-        //Get the value of this Function
-        public double getValue(double x)
+        public double getValue(double x, int deriv = -1)
         {
             double y = 0;
             double temp = 0;
 
             int length = function.Count;
-             
-            int g = 1;
-            int i = 0;
 
-
-            for (i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 temp = x;
 
@@ -60,7 +65,7 @@ namespace calc.process
 
                 //Using the power function is less efficient than the following for loop
                 //temp = Math.Pow(x, polynomialTerms[i].exponent);
-                for (g = 1; g < function[i].exponent; g++)
+                for (int g = 1; g < function[i].exponent; g++)
                 {
 
                         temp *= x;
@@ -69,7 +74,12 @@ namespace calc.process
                 y += temp * function[i].coeff * function[i].getGenericValue(x);
             }
 
+
+           // if(deriv == -1) y = (getValue(x + dx, 1) - 2 * y + getValue(x - dx, 1)) / (dx);
+            
+
             return y;
         }
+
     }
 }

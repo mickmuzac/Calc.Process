@@ -39,6 +39,8 @@
             this.xScale = new System.Windows.Forms.TrackBar();
             this.yScale = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.endIntegral)).BeginInit();
@@ -63,7 +65,7 @@
             this.functionBox.Name = "functionBox";
             this.functionBox.Size = new System.Drawing.Size(296, 20);
             this.functionBox.TabIndex = 2;
-            this.functionBox.Text = "1x^2";
+            this.functionBox.Text = "1x^3";
             this.functionBox.Click += new System.EventHandler(this.functionBox_Click);
             this.functionBox.TextChanged += new System.EventHandler(this.functionBox_TextChanged);
             // 
@@ -142,7 +144,7 @@
             this.xScale.Size = new System.Drawing.Size(815, 45);
             this.xScale.SmallChange = 100;
             this.xScale.TabIndex = 9;
-            this.xScale.Value = 4;
+            this.xScale.Value = 5;
             this.xScale.ValueChanged += new System.EventHandler(this.xScale_ValueChanged);
             // 
             // yScale
@@ -154,7 +156,7 @@
             this.yScale.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.yScale.Size = new System.Drawing.Size(45, 267);
             this.yScale.TabIndex = 10;
-            this.yScale.Value = 2;
+            this.yScale.Value = -2;
             this.yScale.ValueChanged += new System.EventHandler(this.yScale_ValueChanged);
             // 
             // button1
@@ -168,11 +170,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(40, 510);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(83, 17);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Transparent";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Visual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 545);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.yScale);
             this.Controls.Add(this.xScale);
@@ -206,5 +224,7 @@
         private System.Windows.Forms.TrackBar xScale;
         private System.Windows.Forms.TrackBar yScale;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
