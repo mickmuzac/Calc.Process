@@ -17,7 +17,7 @@ Because Calc.Process is in its very early stages, its feature set is currently v
 * More features coming soon!
 
 ##Major Changes
-* 6/22/2012 - Major update including anti-aliasing, support to save png images, derivative line, bug fixes, amd better color choices. Generic Math functions and trig functions are supported, but the parsing of those functions is still unsupported.
+* 6/22/2012 - Major update including anti-aliasing, support to save png images, derivative line, bug fixes, and better color choices. Generic Math functions and trig functions are supported, but the parsing of those functions is still unsupported.
 
 * 6/13/2012 - Added multithreading support resulting in a speed up of about 3-4x on average. Works very well with small dx or large function values.
 
