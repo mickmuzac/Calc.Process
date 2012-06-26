@@ -1,6 +1,6 @@
 #Calc.Process
 
-##Intro
+##Introduction
 
 Calc.Process is a very simple to use calculus calculator made to test the laws of mathematics. I do plan on adding visualization and expanding functionality to it over time.
 
